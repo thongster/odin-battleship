@@ -45,9 +45,9 @@ export default class Gameboard {
     if (this.grid[x][y] === '') {
       // if empty
       this.grid[x][y] = 0; // confirmed no ship
-    } else if (this.grid[x][y] === '1') {
+    } else if (this.grid[x][y] === 1) {
       // if ship is there
-      this.grid[x][y] = 2; // revealed ship
+      this.grid[x][y] = 2; // reveal ship
     }
   }
 }

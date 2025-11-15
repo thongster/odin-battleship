@@ -10,7 +10,7 @@ test('Set ship vertical', () => {
   expect(newGameboard.grid[2][4]).toBe(1);
 });
 
-test.only('Set ship horizontal', () => {
+test('Set ship horizontal', () => {
   const newShip = new Ship(5);
   const newGameboard = new Gameboard
   newGameboard.setShip(newShip, 'horizontal', 5, 8);
@@ -28,7 +28,9 @@ test('Receive attack, empty', () => {
 });
 
 test('Receive attack, contains ship', () => {
-  const newGameboard = new Gameboard();
-  newGameboard.receiveAttack(3, 3);
-  expect(newGameboard.grid[2][2]).toBe(0);
+  const newShip = new Ship(5);
+  const newGameboard = new Gameboard
+  newGameboard.setShip(newShip, 'horizontal', 5, 8);
+  newGameboard.receiveAttack(6, 8);
+  expect(newGameboard.grid[5][7]).toBe(2);
 });
