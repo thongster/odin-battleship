@@ -6,12 +6,12 @@ export default class Ship {
   }
 
   hit() {
-    this.hitCount++
+    this.hitCount++;
   }
 
   isSunk() {
     if (this.hitCount == this.length) {
-        this.sunkStatus = true
+      this.sunkStatus = true;
     }
   }
 }
