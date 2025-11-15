@@ -1,0 +1,32 @@
+{
+  "name": "odin-battleship",
+  "version": "1.0.0",
+  "description": "Project: Battleship from The Odin Project's Javascript course",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thongster/odin-battleship.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thongster/odin-battleship/issues"
+  },
+  "homepage": "https://github.com/thongster/odin-battleship#readme",
+  "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "babel-jest": "^30.2.0",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "globals": "^16.5.0",
+    "jest": "^30.2.0",
+    "prettier": "^3.6.2"
+  }
+}
