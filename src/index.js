@@ -1,3 +1,3 @@
 import './modern-normalize.css';
 import './style.css';
-import './ship.js';
+import Ship from './ship.js'
