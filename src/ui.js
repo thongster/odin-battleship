@@ -1,3 +1,5 @@
+import { generateItems } from "./gamedriver.js";
+
 // populate player and computer visual game boards
 function createGrids(player) {
   let grid;
@@ -90,7 +92,7 @@ function tempColorItemsOnGrid() {
   });
 }
 
-function attack(player) {
+function attack(player, itemsArray) {
   let cellList;
   if (player.isRealPlayer) {
     cellList = document.querySelectorAll('#playerGrid > .cell');
@@ -100,8 +102,9 @@ function attack(player) {
 
   cellList.forEach((node) => {
     node.addEventListener("click", () => {
-        player.gameboard.receiveAttack(Number(node.dataset.x) + 1, Number(node.dataset.y) + 1)
+        player.gameboard.receiveAttack(itemsArray, Number(node.dataset.x) + 1, Number(node.dataset.y) + 1)
         console.log(player.gameboard.grid)
+        console.log(itemsArray)
     })
   })
 }
