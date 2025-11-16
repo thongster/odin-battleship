@@ -17,12 +17,12 @@ export default class Gameboard {
       ['', '', '', '', '', '', '', '', '', ''],
     ];
     this.items = {
-      botd: { name: "Breath of the Dying", size: 5 },
-      hoto: { name: "Heart of the Oak", size: 4 },
-      enigma: { name: "Enigma", size: 3 },
-      spirit: { name: "Spirit", size: 3 },
-      soj: { name: "Stone of Jordan", size: 2 }
-    }
+      botd: { name: 'Breath of the Dying', size: 5 },
+      hoto: { name: 'Heart of the Oak', size: 4 },
+      enigma: { name: 'Enigma', size: 3 },
+      spirit: { name: 'Spirit', size: 3 },
+      soj: { name: 'Stone of Jordan', size: 2 },
+    };
     this.itemCount = 0;
   }
 
@@ -31,15 +31,15 @@ export default class Gameboard {
     y = y - 1;
     // if horizontal
     if (dir === 'horizontal') {
-      for (let i = 0; i < item.length; i++) {
-        this.grid[x][y] = item;
+      for (let i = 0; i < item.size; i++) {
+        this.grid[x][y] = item.name;
         x = x + 1;
       }
     }
     // if vertical
     if (dir === 'vertical') {
-      for (let i = 0; i < item.length; i++) {
-        this.grid[x][y] = item;
+      for (let i = 0; i < item.size; i++) {
+        this.grid[x][y] = item.name;
         y = y + 1;
       }
     }
