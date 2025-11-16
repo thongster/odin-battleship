@@ -39,4 +39,27 @@ function connectGrid(player) {
     })
 }
 
-export { createGrids, connectGrid };
+function colorItemsOnGrid() {
+    const cellList = document.querySelectorAll("#playerGrid > .cell")
+    cellList.forEach((node) => {
+        console.log(node.id)
+        switch (node.id) {
+            case 'Breath of the Dying':
+                node.style.backgroundColor = "#3EE7C9"
+            break;
+            case 'Heart of the Oak':
+                node.style.backgroundColor = "#3BAA44"
+            break;
+            case 'Enigma':
+                node.style.backgroundColor = "#7C4FFF"
+            break;
+            case 'Spirit':
+                node.style.backgroundColor = "#4DA6FF"
+            break;
+            case 'Stone of Jordan':
+                node.style.backgroundColor = "#D8A13D"
+            break;
+        }
+    })
+}
+export { createGrids, connectGrid, colorItemsOnGrid };
