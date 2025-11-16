@@ -69,8 +69,7 @@ export default class Gameboard {
             this.itemCount--; // subtract from itemCount if item is found
           }
         }
-      })
-
+      });
     }
   }
 }

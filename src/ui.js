@@ -1,4 +1,4 @@
-import { generateItems } from "./gamedriver.js";
+import { generateItems } from './gamedriver.js';
 
 // populate player and computer visual game boards
 function createGrids(player) {
@@ -33,13 +33,13 @@ function connectGrid(player) {
   let y = 0;
   cellList.forEach((node) => {
     node.id = player.gameboard.grid[x][y];
-    node.dataset.x = x
-    node.dataset.y = y
+    node.dataset.x = x;
+    node.dataset.y = y;
     x++;
     if (x > 9) {
       x = 0;
-        node.dataset.x = x
-        node.dataset.y = y
+      node.dataset.x = x;
+      node.dataset.y = y;
       y++;
     }
   });
@@ -101,12 +101,23 @@ function attack(player, itemsArray) {
   }
 
   cellList.forEach((node) => {
-    node.addEventListener("click", () => {
-        player.gameboard.receiveAttack(itemsArray, Number(node.dataset.x) + 1, Number(node.dataset.y) + 1)
-        console.log(player.gameboard.grid)
-        console.log(itemsArray)
-    })
-  })
+    node.addEventListener('click', () => {
+      player.gameboard.receiveAttack(
+        itemsArray,
+        Number(node.dataset.x) + 1,
+        Number(node.dataset.y) + 1,
+      );
+      node.textContent = 'X';
+      console.log(player.gameboard.grid);
+      console.log(itemsArray);
+    });
+  });
 }
 
-export { createGrids, connectGrid, colorItemsOnGrid, tempColorItemsOnGrid, attack };
+export {
+  createGrids,
+  connectGrid,
+  colorItemsOnGrid,
+  tempColorItemsOnGrid,
+  attack,
+};

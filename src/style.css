@@ -43,11 +43,14 @@ header > img {
 }
 
 .cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid red;
   height: 2rem;
   width: 2rem;
 }
 
 .cell:hover {
-    scale: 1.1;
+  scale: 1.1;
 }
