@@ -29,6 +29,10 @@ export default class Gameboard {
   setItem(item, dir, x, y) {
     x = x - 1;
     y = y - 1;
+    // if cell already contains item, do nothing
+    if (this.grid[x][y] != "") {
+      return;
+    }
     // if horizontal
     if (dir === 'horizontal') {
       for (let i = 0; i < item.size; i++) {

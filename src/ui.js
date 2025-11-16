@@ -1,3 +1,5 @@
+
+// populate player and computer visual game boards
 function createGrids() {
   const playerGrid = document.getElementById('playerGrid');
   const computerGrid = document.getElementById('computerGrid');
@@ -23,6 +25,10 @@ function createGrids() {
       computerGrid.append(cell);
     }
   }
+}
+
+function connectGrid() {
+    
 }
 
 export { createGrids };
