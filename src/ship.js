@@ -1,17 +1,17 @@
-export default class Ship {
+export default class Item {
   constructor(length) {
     this.length = length;
     this.hitCount = 0;
-    this.sunkStatus = false;
+    this.foundStatus = false;
   }
 
   hit() {
     this.hitCount++;
   }
 
-  isSunk() {
+  isFound() {
     if (this.hitCount == this.length) {
-      this.sunkStatus = true;
+      this.foundStatus = true;
     }
   }
 }
