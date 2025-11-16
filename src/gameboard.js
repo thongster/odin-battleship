@@ -16,13 +16,13 @@ export default class Gameboard {
       ['', '', '', '', '', '', '', '', '', ''],
       ['', '', '', '', '', '', '', '', '', ''],
     ];
-    this.items = {
-      botd: { name: 'Breath of the Dying', size: 5 },
-      hoto: { name: 'Heart of the Oak', size: 4 },
-      enigma: { name: 'Enigma', size: 3 },
-      spirit: { name: 'Spirit', size: 3 },
-      soj: { name: 'Stone of Jordan', size: 2 },
-    };
+    // this.items = {
+    //   botd: { name: 'Breath of the Dying', size: 5 },
+    //   hoto: { name: 'Heart of the Oak', size: 4 },
+    //   enigma: { name: 'Enigma', size: 3 },
+    //   spirit: { name: 'Spirit', size: 3 },
+    //   soj: { name: 'Stone of Jordan', size: 2 },
+    // };
     this.itemCount = 0;
   }
 
@@ -30,7 +30,7 @@ export default class Gameboard {
     x = x - 1;
     y = y - 1;
     // if cell already contains item, do nothing
-    if (this.grid[x][y] != "") {
+    if (this.grid[x][y] != '') {
       return;
     }
     // if horizontal
@@ -61,7 +61,13 @@ export default class Gameboard {
       this.grid[x][y] = 0; // confirmed no item
     } else if (this.grid[x][y] != '') {
       // if item is there
-      const item = this.grid[x][y];
+      let itemName = this.grid[x][y];
+      this.items.forEach((item) => {
+        if (item.name === itemName) {
+          
+        }
+      })
+      console.log(item)
       item.hit(); // add to item hitCount
       item.isFound(); // check if item is found with every hit
       if (item.foundStatus) {

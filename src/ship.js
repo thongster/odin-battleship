@@ -1,5 +1,6 @@
 export default class Item {
-  constructor(length) {
+  constructor(name, length) {
+    this.name = name;
     this.length = length;
     this.hitCount = 0;
     this.foundStatus = false;

@@ -26,7 +26,7 @@ test('Set item if spot already taken', () => {
   newGameboard.setItem(newGameboard.items.botd, 'horizontal', 5, 8);
   newGameboard.setItem(newGameboard.items.hoto, 'vertical', 5, 8);
   expect(newGameboard.grid[4][7]).toBe(newGameboard.items.botd.name);
-  console.log(newGameboard.grid)
+  console.log(newGameboard.grid);
 });
 
 test('Receive attack, empty', () => {

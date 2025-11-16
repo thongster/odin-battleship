@@ -1,47 +1,53 @@
-html, body, .container {
- height: 100vh;
- display: flex;
- flex-direction: column;
+html,
+body,
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
-    margin: 0.5rem;
+  margin: 0.5rem;
 }
 
 header {
-    display: flex;
-    flex-direction: row;
-    height: 4rem;
-    gap: 0.25rem;
-    justify-content: start;
-    align-items: end;
+  display: flex;
+  flex-direction: row;
+  height: 4rem;
+  gap: 0.25rem;
+  justify-content: start;
+  align-items: end;
 }
 
 h1 {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 header > img {
-    aspect-ratio: 1;
-    height: 4rem;
+  aspect-ratio: 1;
+  height: 4rem;
 }
 
 .app {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 4rem;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
 }
 
 .cell {
-    border: 1px solid red;
-    height: 2rem;
-    width: 2rem;
+  border: 1px solid red;
+  height: 2rem;
+  width: 2rem;
+}
+
+.cell:hover {
+    scale: 1.1;
 }
