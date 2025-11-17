@@ -3,12 +3,12 @@ import './style.css';
 import Ship from './ship.js';
 import Gameboard from './gameboard.js';
 import Player from './player.js';
-import { createGrids, connectGrid, colorItemsOnGrid, attack } from './ui.js';
+import { createGrids, connectGrid, colorItemsOnGrid, playerAttack, computerAttack } from './ui.js';
 import { generateItems, checkGameOver, newGame } from './gamedriver.js';
 
 createGrids('player'); // create player grid on dom
 createGrids('computer'); // create computer grid on dom
-let game = newGame() // start new game (new player, computer, itemarrays)
+let game = newGame(); // start new game (new player, computer, itemarrays)
 game.player.gameboard.setItem(game.playerItems[0], 'vertical', 3, 3);
 game.player.gameboard.setItem(game.playerItems[1], 'vertical', 4, 3);
 game.player.gameboard.setItem(game.playerItems[2], 'vertical', 5, 3);
@@ -22,7 +22,5 @@ game.computer.gameboard.setItem(game.computerItems[4], 'horizontal', 3, 7);
 connectGrid(game.player); // connect grid to grid array after items are set
 connectGrid(game.computer); // connect grid to grid array after items are set
 colorItemsOnGrid(); // visually identify items on player grid
-attack(game.player, game.playerItems);
-attack(game.computer, game.computerItems);
 
-
+playerAttack(game);

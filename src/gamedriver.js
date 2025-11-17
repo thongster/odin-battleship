@@ -15,22 +15,18 @@ function generateItems(player) {
 }
 
 function newGame() {
-    const player = new Player(true);
-    const computer = new Player(false);
-    const playerItems = generateItems(player);
-    const computerItems = generateItems(computer);
+  const player = new Player(true);
+  const computer = new Player(false);
+  const playerItems = generateItems(player);
+  const computerItems = generateItems(computer);
 
-    return { player, computer, playerItems, computerItems }
+  return { player, computer, playerItems, computerItems };
 }
 
 function checkGameOver(player) {
-    if (player.gameboard.itemCount === 0) {
-        console.log("game over")
-    }
-}
-
-function resetGame(player) {
-    player = new Player(true)
+  if (player.gameboard.itemCount === 0) {
+    console.log('game over');
+  }
 }
 
 export { generateItems, checkGameOver, newGame };

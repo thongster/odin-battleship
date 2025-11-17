@@ -89,28 +89,35 @@ function revealColorOnHit(node) {
   }
 }
 
-function attack(player, itemsArray) {
-  let cellList;
-  if (player.isRealPlayer) {
-    cellList = document.querySelectorAll('#playerGrid > .cell');
-  } else {
-    cellList = document.querySelectorAll('#computerGrid > .cell');
-  }
+function playerAttack(game) {
+  const cellList = document.querySelectorAll('#computerGrid > .cell')
 
   cellList.forEach((node) => {
     node.addEventListener('click', () => {
-      player.gameboard.receiveAttack(
-        itemsArray,
+      game.computer.gameboard.receiveAttack(
+        game.computerItems,
         Number(node.dataset.x) + 1,
         Number(node.dataset.y) + 1,
       );
       node.textContent = 'X';
       revealColorOnHit(node);
-    checkGameOver(player)
-    console.log(player.gameboard.itemCount)
+      checkGameOver(game.computer);
+      computerAttack(game)
     });
   });
 }
 
+function computerAttack(game) {
+  const cellList = document.querySelectorAll('#playerGrid > .cell');
+  const randomX = Math.floor(Math.random() * 10) + 1 // random X axis move
+  const randomY = Math.floor(Math.random() * 10) + 1 // random Y axis move
+  game.player.gameboard.receiveAttack(game.playerItems, randomX, randomY)
+  cellList.forEach((node) => {
+    if (node.dataset.x == randomX && node.dataset.y == randomY) {
+        node.textContent = 'X';
+    }
+  })
+  checkGameOver(game.player);
+}
 
-export { createGrids, connectGrid, colorItemsOnGrid, attack };
+export { createGrids, connectGrid, colorItemsOnGrid, playerAttack, computerAttack };
