@@ -39,7 +39,6 @@ function connectGrid(player) {
     if (x > 9) {
       x = 0;
       y++;
-      
     }
   });
 }
@@ -88,8 +87,8 @@ function revealColorOnHit(node) {
   }
 }
 
-function playerAttack(game) {
-  const cellList = document.querySelectorAll('#computerGrid > .cell')
+function playerAttack(game, computerMoves) {
+  const cellList = document.querySelectorAll('#computerGrid > .cell');
 
   cellList.forEach((node) => {
     node.addEventListener('click', () => {
@@ -101,23 +100,40 @@ function playerAttack(game) {
       node.textContent = 'X';
       revealColorOnHit(node);
       checkGameOver(game.computer);
-      computerAttack(game)
+      computerAttack(game, computerMoves);
     });
   });
 }
 
-function computerAttack(game) {
+function computerAttack(game, computerMoves) {
   const cellList = document.querySelectorAll('#playerGrid > .cell');
-  let randomX = Math.floor(Math.random() * 10) // random X axis move
-  let randomY = Math.floor(Math.random() * 10) // random Y axis move
-    console.log(randomX, randomY)
+  let randomX = Math.floor(Math.random() * 10); // random X axis move
+  let randomY = Math.floor(Math.random() * 10); // random Y axis move
+  let newMove = [randomX, randomY]
+  console.log(computerMoves)
+    while (computerMoves.some((move) => {
+        return move[0] === newMove[0] && move[1] === newMove[1]
+    })) {
+        randomX = Math.floor(Math.random() * 10); // random X axis move
+        randomY = Math.floor(Math.random() * 10); // random Y axis move
+        newMove = [randomX, randomY]
+        console.log("im in here")
+    }
+    computerMoves.push(newMove)
   cellList.forEach((node) => {
     if (node.dataset.x == randomX && node.dataset.y == randomY) {
-        game.player.gameboard.receiveAttack(game.playerItems, randomX, randomY)
-        node.textContent = 'X';
+      game.player.gameboard.receiveAttack(game.playerItems, randomX, randomY);
+      node.textContent = 'X';
     }
-  })
+  });
+
   checkGameOver(game.player);
 }
 
-export { createGrids, connectGrid, colorItemsOnGrid, playerAttack, computerAttack };
+export {
+  createGrids,
+  connectGrid,
+  colorItemsOnGrid,
+  playerAttack,
+  computerAttack,
+};
