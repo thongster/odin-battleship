@@ -55,7 +55,17 @@ header > img {
     gap: 1rem;    
 }
 
+.items {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
 
+.item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
 
 .gridContainer {
   display: flex;
