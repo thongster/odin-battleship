@@ -53,9 +53,6 @@ export default class Gameboard {
   }
 
   receiveAttack(itemArray, x, y) {
-    x = x - 1;
-    y = y - 1;
-
     if (this.grid[x][y] === '') {
       // if empty
       this.grid[x][y] = 0; // confirmed no item

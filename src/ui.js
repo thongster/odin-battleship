@@ -38,9 +38,8 @@ function connectGrid(player) {
     x++;
     if (x > 9) {
       x = 0;
-      node.dataset.x = x;
-      node.dataset.y = y;
       y++;
+      
     }
   });
 }
@@ -96,8 +95,8 @@ function playerAttack(game) {
     node.addEventListener('click', () => {
       game.computer.gameboard.receiveAttack(
         game.computerItems,
-        Number(node.dataset.x) + 1,
-        Number(node.dataset.y) + 1,
+        Number(node.dataset.x),
+        Number(node.dataset.y),
       );
       node.textContent = 'X';
       revealColorOnHit(node);
@@ -109,11 +108,12 @@ function playerAttack(game) {
 
 function computerAttack(game) {
   const cellList = document.querySelectorAll('#playerGrid > .cell');
-  const randomX = Math.floor(Math.random() * 10) + 1 // random X axis move
-  const randomY = Math.floor(Math.random() * 10) + 1 // random Y axis move
-  game.player.gameboard.receiveAttack(game.playerItems, randomX, randomY)
+  let randomX = Math.floor(Math.random() * 10) // random X axis move
+  let randomY = Math.floor(Math.random() * 10) // random Y axis move
+    console.log(randomX, randomY)
   cellList.forEach((node) => {
     if (node.dataset.x == randomX && node.dataset.y == randomY) {
+        game.player.gameboard.receiveAttack(game.playerItems, randomX, randomY)
         node.textContent = 'X';
     }
   })
