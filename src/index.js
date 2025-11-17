@@ -29,5 +29,5 @@ connectGrid(game.player); // connect grid to grid array after items are set
 connectGrid(game.computer); // connect grid to grid array after items are set
 colorItemsOnGrid(); // visually identify items on player grid
 
-let computerMoves = []
+let computerMoves = [];
 playerAttack(game, computerMoves);

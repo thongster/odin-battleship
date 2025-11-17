@@ -109,15 +109,17 @@ function computerAttack(game, computerMoves) {
   const cellList = document.querySelectorAll('#playerGrid > .cell');
   let randomX = Math.floor(Math.random() * 10); // random X axis move
   let randomY = Math.floor(Math.random() * 10); // random Y axis move
-  let newMove = [randomX, randomY]
-    while (computerMoves.some((move) => {
-        return move[0] === newMove[0] && move[1] === newMove[1]
-    })) {
-        randomX = Math.floor(Math.random() * 10); // random X axis move
-        randomY = Math.floor(Math.random() * 10); // random Y axis move
-        newMove = [randomX, randomY]
-    }
-    computerMoves.push(newMove)
+  let newMove = [randomX, randomY];
+  while (
+    computerMoves.some((move) => {
+      return move[0] === newMove[0] && move[1] === newMove[1];
+    })
+  ) {
+    randomX = Math.floor(Math.random() * 10); // random X axis move
+    randomY = Math.floor(Math.random() * 10); // random Y axis move
+    newMove = [randomX, randomY];
+  }
+  computerMoves.push(newMove);
   cellList.forEach((node) => {
     if (node.dataset.x == randomX && node.dataset.y == randomY) {
       game.player.gameboard.receiveAttack(game.playerItems, randomX, randomY);
@@ -126,6 +128,14 @@ function computerAttack(game, computerMoves) {
   });
 
   checkGameOver(game.player);
+}
+
+function selectItemToSet(game) {
+  const botdButton = document.getElementById('botd');
+  const hotoButtom = document.getElementById('hoto');
+  const enigmaButton = document.getElementById('enigma');
+  const spiritButton = document.getElementById('spirit');
+  const sojButton = document.getElementById('soj');
 }
 
 export {

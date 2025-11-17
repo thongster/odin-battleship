@@ -19,7 +19,7 @@ header {
   align-items: end;
 }
 
-h1, h2, h3 {
+h1, h2, h3, p {
   margin: 0;
   padding: 0;
 }
@@ -59,12 +59,18 @@ header > img {
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    justify-content: center;
+    margin: 1rem;
 }
 
 .item {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    align-items: center;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
+    border-radius: 0.5rem;
+    padding: 1rem;
 }
 
 .gridContainer {
