@@ -110,14 +110,12 @@ function computerAttack(game, computerMoves) {
   let randomX = Math.floor(Math.random() * 10); // random X axis move
   let randomY = Math.floor(Math.random() * 10); // random Y axis move
   let newMove = [randomX, randomY]
-  console.log(computerMoves)
     while (computerMoves.some((move) => {
         return move[0] === newMove[0] && move[1] === newMove[1]
     })) {
         randomX = Math.floor(Math.random() * 10); // random X axis move
         randomY = Math.floor(Math.random() * 10); // random Y axis move
         newMove = [randomX, randomY]
-        console.log("im in here")
     }
     computerMoves.push(newMove)
   cellList.forEach((node) => {

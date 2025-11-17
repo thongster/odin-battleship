@@ -19,7 +19,7 @@ header {
   align-items: end;
 }
 
-h1 {
+h1, h2, h3 {
   margin: 0;
   padding: 0;
 }
@@ -30,6 +30,34 @@ header > img {
 }
 
 .app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 1rem;
+}
+
+.itemsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.itemsHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 1rem;    
+}
+
+
+
+.gridContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
