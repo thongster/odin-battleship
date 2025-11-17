@@ -112,4 +112,5 @@ function attack(player, itemsArray) {
   });
 }
 
+
 export { createGrids, connectGrid, colorItemsOnGrid, attack };

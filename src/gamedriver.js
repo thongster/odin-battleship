@@ -14,11 +14,23 @@ function generateItems(player) {
   return itemsArray;
 }
 
+function newGame() {
+    const player = new Player(true);
+    const computer = new Player(false);
+    const playerItems = generateItems(player);
+    const computerItems = generateItems(computer);
+
+    return { player, computer, playerItems, computerItems }
+}
+
 function checkGameOver(player) {
     if (player.gameboard.itemCount === 0) {
         console.log("game over")
     }
 }
 
+function resetGame(player) {
+    player = new Player(true)
+}
 
-export { generateItems, checkGameOver };
+export { generateItems, checkGameOver, newGame };
