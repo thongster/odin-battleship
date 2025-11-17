@@ -1,4 +1,4 @@
-import { generateItems } from './gamedriver.js';
+import { generateItems, checkGameOver } from './gamedriver.js';
 
 // populate player and computer visual game boards
 function createGrids(player) {
@@ -106,6 +106,8 @@ function attack(player, itemsArray) {
       );
       node.textContent = 'X';
       revealColorOnHit(node);
+    checkGameOver(player)
+    console.log(player.gameboard.itemCount)
     });
   });
 }

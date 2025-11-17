@@ -1,7 +1,7 @@
 import Item from './ship.js';
 import Gameboard from './gameboard.js';
 import Player from './player.js';
-import { createGrids, connectGrid, colorItemsOnGrid } from './ui.js';
+import { createGrids, connectGrid, colorItemsOnGrid, attack } from './ui.js';
 
 // generate items at start of game
 function generateItems(player) {
@@ -14,4 +14,11 @@ function generateItems(player) {
   return itemsArray;
 }
 
-export { generateItems };
+function checkGameOver(player) {
+    if (player.gameboard.itemCount === 0) {
+        console.log("game over")
+    }
+}
+
+
+export { generateItems, checkGameOver };

@@ -4,7 +4,7 @@ import Ship from './ship.js';
 import Gameboard from './gameboard.js';
 import Player from './player.js';
 import { createGrids, connectGrid, colorItemsOnGrid, attack } from './ui.js';
-import { generateItems } from './gamedriver.js';
+import { generateItems, checkGameOver } from './gamedriver.js';
 
 createGrids('player'); // create player grid on dom
 createGrids('computer'); // create computer grid on dom
@@ -27,3 +27,5 @@ connectGrid(computer); // connect grid to grid array after items are set
 colorItemsOnGrid(); // visually identify items on player grid
 attack(player, playerItems);
 attack(computer, computerItems);
+
+
