@@ -130,12 +130,33 @@ function computerAttack(game, computerMoves) {
   checkGameOver(game.player);
 }
 
-function selectItemToSet(game) {
+function selectItemToSet(game, currentItem) {
   const botdButton = document.getElementById('botd');
   const hotoButtom = document.getElementById('hoto');
   const enigmaButton = document.getElementById('enigma');
   const spiritButton = document.getElementById('spirit');
   const sojButton = document.getElementById('soj');
+
+  botdButton.addEventListener('click', () => {
+    currentItem = game.playerItems[0];
+    console.log(currentItem);
+  });
+  hotoButtom.addEventListener('click', () => {
+    currentItem = game.playerItems[1];
+    console.log(currentItem);
+  });
+  enigmaButton.addEventListener('click', () => {
+    currentItem = game.playerItems[2];
+    console.log(currentItem);
+  });
+  spiritButton.addEventListener('click', () => {
+    currentItem = game.playerItems[3];
+    console.log(currentItem);
+  });
+  sojButton.addEventListener('click', () => {
+    currentItem = game.playerItems[4];
+    console.log(currentItem);
+  });
 }
 
 export {
@@ -144,4 +165,5 @@ export {
   colorItemsOnGrid,
   playerAttack,
   computerAttack,
+  selectItemToSet,
 };

@@ -16,13 +16,7 @@ export default class Gameboard {
       ['', '', '', '', '', '', '', '', '', ''],
       ['', '', '', '', '', '', '', '', '', ''],
     ];
-    // this.items = {
-    //   botd: { name: 'Breath of the Dying', size: 5 },
-    //   hoto: { name: 'Heart of the Oak', size: 4 },
-    //   enigma: { name: 'Enigma', size: 3 },
-    //   spirit: { name: 'Spirit', size: 3 },
-    //   soj: { name: 'Stone of Jordan', size: 2 },
-    // };
+
     this.itemCount = 0;
   }
 

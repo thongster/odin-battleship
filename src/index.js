@@ -9,6 +9,7 @@ import {
   colorItemsOnGrid,
   playerAttack,
   computerAttack,
+  selectItemToSet,
 } from './ui.js';
 import { generateItems, checkGameOver, newGame } from './gamedriver.js';
 
@@ -31,3 +32,5 @@ colorItemsOnGrid(); // visually identify items on player grid
 
 let computerMoves = [];
 playerAttack(game, computerMoves);
+let currentItem;
+selectItemToSet(game, currentItem);
