@@ -136,10 +136,30 @@ function selectItemToSet(game, currentItem) {
   const enigmaButton = document.getElementById('enigma');
   const spiritButton = document.getElementById('spirit');
   const sojButton = document.getElementById('soj');
+  const rotateButton = document.getElementById("rotate")
+  const cellList = document.querySelectorAll('#playerGrid > .cell');
 
   botdButton.addEventListener('click', () => {
     currentItem = game.playerItems[0];
-    console.log(currentItem);
+    const size = game.playerItems[0].length
+    let direction = 'horizontal'
+
+    // set direction with rotation button
+    rotateButton.addEventListener('click', () => {
+        direction = (direction === 'horizontal') ? 'vertical' : 'horizontal'
+    })
+
+    cellList.forEach((cell) => {
+        cell.addEventListener('mouseover', () => {
+            cell.style.backgroundColor = "red"
+        })
+
+        cell.addEventListener('mouseout', () => {
+            cell.style.backgroundColor = ""
+        })
+    })
+    
+    // game.player.gameboard.setItem(game.playerItems[0], direction, 3, 3);
   });
   hotoButtom.addEventListener('click', () => {
     currentItem = game.playerItems[1];
