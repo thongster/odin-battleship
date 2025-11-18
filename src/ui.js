@@ -139,63 +139,66 @@ function selectItemToSet(game, currentItem) {
   const sojButton = document.getElementById('soj');
   const rotateButton = document.getElementById('rotate');
   const cellList = document.querySelectorAll('#playerGrid > .cell');
+  let direction = 'horizontal';
 
+  // set direction with rotation button
+  rotateButton.addEventListener('click', () => {
+    direction = direction === 'horizontal' ? 'vertical' : 'horizontal';
+  });
+
+  // set current item to botd
   botdButton.addEventListener('click', () => {
     currentItem = game.playerItems[0];
-    const size = game.playerItems[0].length;
-    let direction = 'horizontal';
+  });
 
-    // set direction with rotation button
-    rotateButton.addEventListener('click', () => {
-      direction = direction === 'horizontal' ? 'vertical' : 'horizontal';
-    });
-
-    cellList.forEach((cell, index) => {
-      cell.addEventListener('mouseover', () => {
-        if (direction === 'horizontal') {
-          for (let i = 0; i < size; i++) {
-            const cellToHighlight = cellList[index + i]; // cell + the size
-            if (!cellToHighlight) break; // stop if out of bounds
-            for (let i of cellToHighlight.dataset.x) {
-              if (i >= 9) {
-                cellToHighlight.style.backgroundColor = 'green';
-                return;
-              } else {
-                cellToHighlight.style.backgroundColor = 'green';
-              }
+  cellList.forEach((cell, index) => {
+    cell.addEventListener('mouseover', () => {
+      const size = currentItem ? currentItem.length : 0;
+      if (direction === 'horizontal') {
+        for (let i = 0; i < size; i++) {
+          const cellToHighlight = cellList[index + i]; // cell + the size
+          if (!cellToHighlight) break; // stop if out of bounds
+          for (let i of cellToHighlight.dataset.x) {
+            if (i >= 9) {
+              cellToHighlight.style.backgroundColor = 'green';
+              return;
+            } else {
+              cellToHighlight.style.backgroundColor = 'green';
             }
           }
         }
+      }
 
-        if (direction === 'vertical') {
-          for (let i = 0; i < size * 10; i = i + 10) {
-            const cellToHighlight = cellList[index + i];
-            if (!cellToHighlight) break;
-            cellToHighlight.style.backgroundColor = 'green';
-          }
+      if (direction === 'vertical') {
+        for (let i = 0; i < size * 10; i = i + 10) {
+          const cellToHighlight = cellList[index + i];
+          if (!cellToHighlight) break;
+          cellToHighlight.style.backgroundColor = 'green';
         }
-      });
-
-      cell.addEventListener('mouseout', () => {
-        for (let i = 0; i < cellList.length; i++) {
-          cellList[i].style.backgroundColor = '';
-        }
-      });
-
-      cell.addEventListener('click', () => {
-        game.player.gameboard.setItem(
-          game.playerItems[0],
-          direction,
-          Number(cell.dataset.x) + 1,
-          Number(cell.dataset.y) + 1,
-        );
-        colorItemsOnGrid();
-        connectGrid(game.player);
-      });
+      }
     });
 
-    // game.player.gameboard.setItem(game.playerItems[0], direction, 3, 3);
+    cell.addEventListener('mouseout', () => {
+      for (let i = 0; i < cellList.length; i++) {
+        cellList[i].style.backgroundColor = '';
+      }
+    });
+
+    cell.addEventListener('click', () => {
+      if (!currentItem) return;
+      game.player.gameboard.setItem(
+        currentItem,
+        direction,
+        Number(cell.dataset.x) + 1,
+        Number(cell.dataset.y) + 1,
+        
+      )
+        connectGrid(game.player);
+        colorItemsOnGrid();
+        currentItem = null;
+    });
   });
+
   hotoButtom.addEventListener('click', () => {
     currentItem = game.playerItems[1];
     console.log(currentItem);
