@@ -119,10 +119,12 @@ function computerAttack(game, computerMoves) {
     newMove = [randomX, randomY];
   }
   computerMoves.push(newMove);
+
+  // receive attack and align with x and y axis
   cellList.forEach((node) => {
     if (node.dataset.x == randomX && node.dataset.y == randomY) {
       game.player.gameboard.receiveAttack(game.playerItems, randomX, randomY);
-      node.textContent = 'X';
+      node.textContent = 'X'; // visually populate cell with X
     }
   });
 
@@ -135,54 +137,57 @@ function selectItemToSet(game, currentItem) {
   const enigmaButton = document.getElementById('enigma');
   const spiritButton = document.getElementById('spirit');
   const sojButton = document.getElementById('soj');
-  const rotateButton = document.getElementById("rotate")
+  const rotateButton = document.getElementById('rotate');
   const cellList = document.querySelectorAll('#playerGrid > .cell');
 
   botdButton.addEventListener('click', () => {
     currentItem = game.playerItems[0];
-    const size = game.playerItems[0].length
-    let direction = 'horizontal'
+    const size = game.playerItems[0].length;
+    let direction = 'horizontal';
 
     // set direction with rotation button
     rotateButton.addEventListener('click', () => {
-        direction = (direction === 'horizontal') ? 'vertical' : 'horizontal'
-    })
-
-    let tempHighlightsCells = [] // track highlighted cells to unhighlight them too
+      direction = direction === 'horizontal' ? 'vertical' : 'horizontal';
+    });
 
     cellList.forEach((cell, index) => {
-        cell.addEventListener('mouseover', () => {
-            if (direction === 'horizontal') {
-                for (let i = 0; i < size; i++) {
-                    const cellToHighlight = cellList[index + i] // cell + the size
-                    if (!cellToHighlight) break; // stop if out of bounds
-                    for (let i of cellToHighlight.dataset.x) {
-                        if (i >= 9) {
-                            cellToHighlight.style.backgroundColor = "green"
-                            return;
-                        } else {
-                            cellToHighlight.style.backgroundColor = "green"
-                        }
-                    }
-                }
+      cell.addEventListener('mouseover', () => {
+        if (direction === 'horizontal') {
+          for (let i = 0; i < size; i++) {
+            const cellToHighlight = cellList[index + i]; // cell + the size
+            if (!cellToHighlight) break; // stop if out of bounds
+            for (let i of cellToHighlight.dataset.x) {
+              if (i >= 9) {
+                cellToHighlight.style.backgroundColor = 'green';
+                return;
+              } else {
+                cellToHighlight.style.backgroundColor = 'green';
+              }
             }
+          }
+        }
 
-            if (direction === 'vertical') {
-                for (let i = 0; i < size * 10; i = i + 10) {
-                    const cellToHighlight = cellList[index + i]
-                    if (!cellToHighlight) break;
-                    cellToHighlight.style.backgroundColor = "green"
-                }
-            }
-        })
+        if (direction === 'vertical') {
+          for (let i = 0; i < size * 10; i = i + 10) {
+            const cellToHighlight = cellList[index + i];
+            if (!cellToHighlight) break;
+            cellToHighlight.style.backgroundColor = 'green';
+          }
+        }
+      });
 
-        cell.addEventListener('mouseout', () => {
-            for (let i = 0; i < cellList.length; i++) {
-                cellList[i].style.backgroundColor = ""
-            }
-        })
-    })
-    
+      cell.addEventListener('mouseout', () => {
+        for (let i = 0; i < cellList.length; i++) {
+          cellList[i].style.backgroundColor = '';
+        }
+      });
+
+      cell.addEventListener("click", () => {
+        game.player.gameboard.setItem(game.playerItems[0], direction, cell.dataset.x, cell.dataset.y);
+        console.log(game.player.gameboard.grid)
+      })
+    });
+
     // game.player.gameboard.setItem(game.playerItems[0], direction, 3, 3);
   });
   hotoButtom.addEventListener('click', () => {
