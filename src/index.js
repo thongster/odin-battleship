@@ -28,7 +28,6 @@ game.computer.gameboard.setItem(game.computerItems[3], 'horizontal', 3, 6);
 game.computer.gameboard.setItem(game.computerItems[4], 'horizontal', 3, 7);
 connectGrid(game.player); // connect grid to grid array after items are set
 connectGrid(game.computer); // connect grid to grid array after items are set
-colorItemsOnGrid(); // visually identify items on player grid
 
 let computerMoves = [];
 playerAttack(game, computerMoves);

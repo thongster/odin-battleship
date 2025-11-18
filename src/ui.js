@@ -182,10 +182,16 @@ function selectItemToSet(game, currentItem) {
         }
       });
 
-      cell.addEventListener("click", () => {
-        game.player.gameboard.setItem(game.playerItems[0], direction, cell.dataset.x, cell.dataset.y);
-        console.log(game.player.gameboard.grid)
-      })
+      cell.addEventListener('click', () => {
+        game.player.gameboard.setItem(
+          game.playerItems[0],
+          direction,
+          Number(cell.dataset.x) + 1,
+          Number(cell.dataset.y) + 1,
+        );
+        colorItemsOnGrid();
+        connectGrid(game.player);
+      });
     });
 
     // game.player.gameboard.setItem(game.playerItems[0], direction, 3, 3);
