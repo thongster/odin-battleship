@@ -66,7 +66,6 @@ function colorItemsOnGrid() {
   });
 }
 
-// delete this later (we shouldn't know the computer's position)
 function revealColorOnHit(node) {
   switch (node.id) {
     case 'Breath of the Dying':
@@ -149,13 +148,25 @@ function selectItemToSet(game, currentItem) {
         direction = (direction === 'horizontal') ? 'vertical' : 'horizontal'
     })
 
-    cellList.forEach((cell) => {
+    let tempHighlightsCells = [] // track highlighted cells to unhighlight them too
+
+    cellList.forEach((cell, index) => {
         cell.addEventListener('mouseover', () => {
-            cell.style.backgroundColor = "red"
+            console.log(cell[index])
+            if (direction === 'horizontal') {
+                for (let i = 0; i < size; i++) {
+                    const cellToHighlight = cellList[index + i] // cell + the size
+                    if (!cellToHighlight) break; // stop if out of bounds
+                    cellToHighlight.style.backgroundColor = "green"
+                }
+            }
+            // cell.style.backgroundColor = "red"
         })
 
         cell.addEventListener('mouseout', () => {
-            cell.style.backgroundColor = ""
+            for (let i = 0; i < cellList.length; i++) {
+                cellList[i].style.backgroundColor = ""
+            }
         })
     })
     
