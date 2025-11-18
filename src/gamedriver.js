@@ -29,4 +29,20 @@ function checkGameOver(player) {
   }
 }
 
-export { generateItems, checkGameOver, newGame };
+function randomComputerSet(game) {
+    for (let i = 0; i < game.computerItems.length; i++) {
+        let placed = false;
+
+        while (!placed) {
+            placed = game.computer.gameboard.setItem(
+                game.computerItems[i],
+                Math.random() < 0.5 ? 'horizontal' : 'vertical', 
+                Math.floor(Math.random() * 10) + 1, 
+                Math.floor(Math.random() * 10) + 1
+            );            
+        }
+        console.log(game.computer.gameboard.grid)
+    }
+}
+
+export { generateItems, checkGameOver, newGame, randomComputerSet };

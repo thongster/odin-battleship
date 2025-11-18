@@ -215,6 +215,8 @@ function selectItemToSet(game, currentItem) {
   });
 }
 
+
+
 export {
   createGrids,
   connectGrid,
