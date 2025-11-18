@@ -152,15 +152,28 @@ function selectItemToSet(game, currentItem) {
 
     cellList.forEach((cell, index) => {
         cell.addEventListener('mouseover', () => {
-            console.log(cell[index])
             if (direction === 'horizontal') {
                 for (let i = 0; i < size; i++) {
                     const cellToHighlight = cellList[index + i] // cell + the size
                     if (!cellToHighlight) break; // stop if out of bounds
+                    for (let i of cellToHighlight.dataset.x) {
+                        if (i >= 9) {
+                            cellToHighlight.style.backgroundColor = "green"
+                            return;
+                        } else {
+                            cellToHighlight.style.backgroundColor = "green"
+                        }
+                    }
+                }
+            }
+
+            if (direction === 'vertical') {
+                for (let i = 0; i < size * 10; i = i + 10) {
+                    const cellToHighlight = cellList[index + i]
+                    if (!cellToHighlight) break;
                     cellToHighlight.style.backgroundColor = "green"
                 }
             }
-            // cell.style.backgroundColor = "red"
         })
 
         cell.addEventListener('mouseout', () => {
