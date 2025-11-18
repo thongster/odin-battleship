@@ -150,6 +150,18 @@ function selectItemToSet(game, currentItem) {
   botdButton.addEventListener('click', () => {
     currentItem = game.playerItems[0];
   });
+  hotoButtom.addEventListener('click', () => {
+    currentItem = game.playerItems[1];
+  });
+  enigmaButton.addEventListener('click', () => {
+    currentItem = game.playerItems[2];
+  });
+  spiritButton.addEventListener('click', () => {
+    currentItem = game.playerItems[3];
+  });
+  sojButton.addEventListener('click', () => {
+    currentItem = game.playerItems[4];
+  });
 
   cellList.forEach((cell, index) => {
     cell.addEventListener('mouseover', () => {
@@ -160,10 +172,10 @@ function selectItemToSet(game, currentItem) {
           if (!cellToHighlight) break; // stop if out of bounds
           for (let i of cellToHighlight.dataset.x) {
             if (i >= 9) {
-              cellToHighlight.style.backgroundColor = 'green';
+              cellToHighlight.style.boxShadow = 'inset 0px 0px 10px rgba(0, 0, 0, 0.5)';
               return;
             } else {
-              cellToHighlight.style.backgroundColor = 'green';
+              cellToHighlight.style.boxShadow = 'inset 0px 0px 10px rgba(0, 0, 0, 0.5)';
             }
           }
         }
@@ -173,14 +185,14 @@ function selectItemToSet(game, currentItem) {
         for (let i = 0; i < size * 10; i = i + 10) {
           const cellToHighlight = cellList[index + i];
           if (!cellToHighlight) break;
-          cellToHighlight.style.backgroundColor = 'green';
+          cellToHighlight.style.boxShadow = 'inset 0px 0px 10px rgba(0, 0, 0, 0.5)';
         }
       }
     });
 
     cell.addEventListener('mouseout', () => {
       for (let i = 0; i < cellList.length; i++) {
-        cellList[i].style.backgroundColor = '';
+        cellList[i].style.boxShadow = '';
       }
     });
 
@@ -196,24 +208,8 @@ function selectItemToSet(game, currentItem) {
         connectGrid(game.player);
         colorItemsOnGrid();
         currentItem = null;
+        console.log(game.player.gameboard.grid)
     });
-  });
-
-  hotoButtom.addEventListener('click', () => {
-    currentItem = game.playerItems[1];
-    console.log(currentItem);
-  });
-  enigmaButton.addEventListener('click', () => {
-    currentItem = game.playerItems[2];
-    console.log(currentItem);
-  });
-  spiritButton.addEventListener('click', () => {
-    currentItem = game.playerItems[3];
-    console.log(currentItem);
-  });
-  sojButton.addEventListener('click', () => {
-    currentItem = game.playerItems[4];
-    console.log(currentItem);
   });
 }
 
