@@ -172,10 +172,12 @@ function selectItemToSet(game, currentItem) {
           if (!cellToHighlight) break; // stop if out of bounds
           for (let i of cellToHighlight.dataset.x) {
             if (i >= 9) {
-              cellToHighlight.style.boxShadow = 'inset 0px 0px 10px rgba(0, 0, 0, 0.5)';
+              cellToHighlight.style.boxShadow =
+                'inset 0px 0px 10px rgba(0, 0, 0, 0.5)';
               return;
             } else {
-              cellToHighlight.style.boxShadow = 'inset 0px 0px 10px rgba(0, 0, 0, 0.5)';
+              cellToHighlight.style.boxShadow =
+                'inset 0px 0px 10px rgba(0, 0, 0, 0.5)';
             }
           }
         }
@@ -185,7 +187,8 @@ function selectItemToSet(game, currentItem) {
         for (let i = 0; i < size * 10; i = i + 10) {
           const cellToHighlight = cellList[index + i];
           if (!cellToHighlight) break;
-          cellToHighlight.style.boxShadow = 'inset 0px 0px 10px rgba(0, 0, 0, 0.5)';
+          cellToHighlight.style.boxShadow =
+            'inset 0px 0px 10px rgba(0, 0, 0, 0.5)';
         }
       }
     });
@@ -203,12 +206,11 @@ function selectItemToSet(game, currentItem) {
         direction,
         Number(cell.dataset.x) + 1,
         Number(cell.dataset.y) + 1,
-        
-      )
-        connectGrid(game.player);
-        colorItemsOnGrid();
-        currentItem = null;
-        console.log(game.player.gameboard.grid)
+      );
+      connectGrid(game.player);
+      colorItemsOnGrid();
+      currentItem = null;
+      console.log(game.player.gameboard.grid);
     });
   });
 }

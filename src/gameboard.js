@@ -24,26 +24,34 @@ export default class Gameboard {
     x = x - 1;
     y = y - 1;
     // if cell already contains item, do nothing
-    if (this.grid[x][y] != '') {
-      return;
-    }
-    // if horizontal
-    if (dir === 'horizontal') {
-      for (let i = 0; i < item.length; i++) {
-        this.grid[x][y] = item.name;
-        x = x + 1;
+
+    const coordinates = [];
+
+    for (let i = 0; i < item.length; i++) {
+      let tryX = x;
+      let tryY = y;
+      // check direction, add index per size of item
+      if (dir === 'horizontal') {
+        tryX = x + i;
       }
-    }
-    // if vertical
-    if (dir === 'vertical') {
-      for (let i = 0; i < item.length; i++) {
-        this.grid[x][y] = item.name;
-        y = y + 1;
+      if (dir === 'vertical') {
+        tryY = y + i;
       }
+
+      if (tryX > 9 || tryY > 9) return false;
+      if (this.grid[tryX][tryY] != '') return false;
+
+      coordinates.push([tryX, tryY]);
     }
+
+    coordinates.forEach(([tryX, tryY]) => {
+      this.grid[tryX][tryY] = item.name;
+    });
 
     // keep track of item count
     this.itemCount++;
+
+    return true;
   }
 
   receiveAttack(itemArray, x, y) {
