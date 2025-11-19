@@ -77,13 +77,13 @@ header > img {
 }
 
 .state {
-    display: flex;
-    justify-content: center;
-    margin: 0.5rem;
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem;
 }
 
 #stateTitle {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 .gridContainer {

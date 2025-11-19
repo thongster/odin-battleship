@@ -212,10 +212,9 @@ function selectItemToSet(game, currentItem) {
       if (direction === 'horizontal') {
         for (let i = 0; i < size; i++) {
           const cellToHighlight = cellList[index + i]; // cell + the size
-          console.log(cellToHighlight)
           if (!cellToHighlight) return; // stop if out of bounds
           if (cellToHighlight.id) return; // stop if cell already has an id
-        }        
+        }
       }
       if (direction === 'vertical') {
         for (let i = 0; i < size * 10; i = i + 10) {
@@ -225,19 +224,17 @@ function selectItemToSet(game, currentItem) {
         }
       }
 
-        itemsAlreadySet.push(currentItem); // add item to tracking array
-        game.player.gameboard.setItem( // set item to game board
-          currentItem,
-          direction,
-          Number(cell.dataset.x) + 1,
-          Number(cell.dataset.y) + 1,
-        );
-        connectGrid(game.player); // connect dom grid to gameboard grid
-        colorItemsOnGrid(); // display colors
-        currentItem = null;
-        console.log(game.player.gameboard.grid);
-        console.log(itemsAlreadySet)
-      
+      itemsAlreadySet.push(currentItem); // add item to tracking array
+      game.player.gameboard.setItem(
+        // set item to game board
+        currentItem,
+        direction,
+        Number(cell.dataset.x) + 1,
+        Number(cell.dataset.y) + 1,
+      );
+      connectGrid(game.player); // connect dom grid to gameboard grid
+      colorItemsOnGrid(); // display colors
+      currentItem = null;
     });
   });
 }
