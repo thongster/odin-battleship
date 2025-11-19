@@ -212,13 +212,18 @@ function selectItemToSet(game, currentItem) {
       if (direction === 'horizontal') {
         for (let i = 0; i < size; i++) {
           const cellToHighlight = cellList[index + i]; // cell + the size
+          console.log(cellToHighlight)
           if (!cellToHighlight) return; // stop if out of bounds
+          for (let i of cellToHighlight.dataset.x) {
+            if (i >= 9) return
+          }
           if (cellToHighlight.id) return; // stop if cell already has an id
         }
       }
       if (direction === 'vertical') {
         for (let i = 0; i < size * 10; i = i + 10) {
           const cellToHighlight = cellList[index + i];
+          console.log(cellToHighlight)
           if (!cellToHighlight) return; // stop if out of bounds
           if (cellToHighlight.id) return; // stop if cell already has an id
         }
@@ -235,6 +240,7 @@ function selectItemToSet(game, currentItem) {
       connectGrid(game.player); // connect dom grid to gameboard grid
       colorItemsOnGrid(); // display colors
       currentItem = null;
+      console.log(itemsAlreadySet)
     });
   });
 }

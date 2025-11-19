@@ -51,9 +51,14 @@ function newGamePhase(game) {
   randomComputerSet(game); // computer sets new board
   connectGrid(game.player); // connect grid to grid array after items are set
   connectGrid(game.computer); // connect grid to grid array after items are set
+
+  let currentItem;
+selectItemToSet(game, currentItem);
 }
 
-function playingGamePhase(game) {}
+function playingGamePhase(game) {
+
+}
 
 function gameOver(game) {}
 

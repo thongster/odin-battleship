@@ -21,8 +21,7 @@ import {
 
 let game = newGame(); // start new game (new player, computer, itemarrays)
 newGamePhase(game); // enter New Game Phase
+let phase = 'new game'
+// let computerMoves = [];
+// playerAttack(game, computerMoves);
 
-let computerMoves = [];
-playerAttack(game, computerMoves);
-let currentItem;
-selectItemToSet(game, currentItem);
