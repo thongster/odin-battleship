@@ -52,12 +52,17 @@ function newGamePhase(game) {
   connectGrid(game.player); // connect grid to grid array after items are set
   connectGrid(game.computer); // connect grid to grid array after items are set
 
-  let currentItem;
-selectItemToSet(game, currentItem);
+}
+
+function checkPhase(game) {
+    if (game.player.gameboard.itemCount === 5)  {
+        playingGamePhase(game)
+    }
 }
 
 function playingGamePhase(game) {
-
+    let computerMoves = [];
+    playerAttack(game, computerMoves);
 }
 
 function gameOver(game) {}
@@ -65,6 +70,9 @@ function gameOver(game) {}
 function checkGameOver(player) {
   if (player.gameboard.itemCount === 0) {
     console.log('game over');
+    return true
+  } else {
+    return false
   }
 }
 
@@ -74,4 +82,5 @@ export {
   newGame,
   randomComputerSet,
   newGamePhase,
+  checkPhase
 };

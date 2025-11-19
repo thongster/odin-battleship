@@ -1,4 +1,4 @@
-import { generateItems, checkGameOver } from './gamedriver.js';
+import { generateItems, checkGameOver, checkPhase } from './gamedriver.js';
 
 // populate player and computer visual game boards
 function createGrids(player) {
@@ -240,9 +240,10 @@ function selectItemToSet(game, currentItem) {
       connectGrid(game.player); // connect dom grid to gameboard grid
       colorItemsOnGrid(); // display colors
       currentItem = null;
-      console.log(itemsAlreadySet)
+      checkPhase(game)
     });
   });
+
 }
 
 export {
