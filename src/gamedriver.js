@@ -8,6 +8,7 @@ import {
   playerAttack,
   computerAttack,
   selectItemToSet,
+  toggleAttack
 } from './ui.js';
 
 // generate items at start of game
@@ -51,28 +52,33 @@ function newGamePhase(game) {
   randomComputerSet(game); // computer sets new board
   connectGrid(game.player); // connect grid to grid array after items are set
   connectGrid(game.computer); // connect grid to grid array after items are set
-
 }
 
 function checkPhase(game) {
-    if (game.player.gameboard.itemCount === 5)  {
-        playingGamePhase(game)
-    }
+  if (game.player.gameboard.itemCount === 5) {
+    playingGamePhase(game);
+    toggleAttack()
+  }
+  if (
+    game.player.gameboard.itemCount === 0 ||
+    game.computer.gameboard.itemCount === 0
+  ) {
+    toggleAttack()
+    // gameOver()
+  }
 }
 
 function playingGamePhase(game) {
-    let computerMoves = [];
-    playerAttack(game, computerMoves);
+  let computerMoves = [];
+  playerAttack(game, computerMoves);
 }
 
 function gameOver(game) {}
 
 function checkGameOver(player) {
   if (player.gameboard.itemCount === 0) {
-    console.log('game over');
-    return true
+    console.log('game over');    
   } else {
-    return false
   }
 }
 
@@ -82,5 +88,5 @@ export {
   newGame,
   randomComputerSet,
   newGamePhase,
-  checkPhase
+  checkPhase,
 };

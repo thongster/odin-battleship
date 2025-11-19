@@ -12,6 +12,9 @@ function createGrids(player) {
   for (let i = 0; i < 10; i++) {
     const cell = document.createElement('div');
     cell.classList.add('cell');
+    if (player == 'computer') {
+        cell.classList.add('disabled')
+    }
     grid.append(cell);
     for (let i = 0; i < 9; i++) {
       const cell = document.createElement('div');
@@ -86,6 +89,22 @@ function revealColorOnHit(node) {
   }
 }
 
+function clearGridDOM() {
+  const allCellList = document.querySelectorAll('.cell');
+  allCellList.forEach((node) => {
+    node.removeAttribute("id")
+    node.textContent = ""
+    node.style.backgroundColor = ""
+    })
+}
+
+function toggleAttack() {
+    const cellList = document.querySelectorAll('#computerGrid > .cell')
+    cellList.forEach((node) => {
+        node.classList.toggle("disabled")
+    })
+}
+
 function playerAttack(game, computerMoves) {
   const cellList = document.querySelectorAll('#computerGrid > .cell');
 
@@ -131,7 +150,7 @@ function computerAttack(game, computerMoves) {
   checkGameOver(game.player);
 }
 
-function selectItemToSet(game, currentItem) {
+function selectItemToSet(game, currentItem, itemsAlreadySet) {
   const botdButton = document.getElementById('botd');
   const hotoButtom = document.getElementById('hoto');
   const enigmaButton = document.getElementById('enigma');
@@ -140,7 +159,6 @@ function selectItemToSet(game, currentItem) {
   const rotateButton = document.getElementById('rotate');
   const cellList = document.querySelectorAll('#playerGrid > .cell');
   let direction = 'horizontal';
-  let itemsAlreadySet = [];
 
   // set direction with rotation button
   rotateButton.addEventListener('click', () => {
@@ -212,10 +230,10 @@ function selectItemToSet(game, currentItem) {
       if (direction === 'horizontal') {
         for (let i = 0; i < size; i++) {
           const cellToHighlight = cellList[index + i]; // cell + the size
-          console.log(cellToHighlight)
+          console.log(cellToHighlight);
           if (!cellToHighlight) return; // stop if out of bounds
           for (let i of cellToHighlight.dataset.x) {
-            if (i >= 9) return
+            if (i >= 9) return;
           }
           if (cellToHighlight.id) return; // stop if cell already has an id
         }
@@ -223,7 +241,7 @@ function selectItemToSet(game, currentItem) {
       if (direction === 'vertical') {
         for (let i = 0; i < size * 10; i = i + 10) {
           const cellToHighlight = cellList[index + i];
-          console.log(cellToHighlight)
+          console.log(cellToHighlight);
           if (!cellToHighlight) return; // stop if out of bounds
           if (cellToHighlight.id) return; // stop if cell already has an id
         }
@@ -239,11 +257,11 @@ function selectItemToSet(game, currentItem) {
       );
       connectGrid(game.player); // connect dom grid to gameboard grid
       colorItemsOnGrid(); // display colors
+      checkPhase(game);
       currentItem = null;
-      checkPhase(game)
+      console.log(cellList)
     });
   });
-
 }
 
 export {
@@ -253,4 +271,6 @@ export {
   playerAttack,
   computerAttack,
   selectItemToSet,
+  clearGridDOM,
+  toggleAttack
 };
