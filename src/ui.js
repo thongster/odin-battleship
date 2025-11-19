@@ -205,21 +205,39 @@ function selectItemToSet(game, currentItem) {
 
     cell.addEventListener('click', () => {
       if (!currentItem) return;
-      if (itemsAlreadySet.includes(currentItem)) {
-        return;
-      } else {
-        itemsAlreadySet.push(currentItem);
-        game.player.gameboard.setItem(
+      // if item already set, don't allow duplicates
+      if (itemsAlreadySet.includes(currentItem)) return;
+
+      const size = currentItem ? currentItem.length : 0;
+      if (direction === 'horizontal') {
+        for (let i = 0; i < size; i++) {
+          const cellToHighlight = cellList[index + i]; // cell + the size
+          console.log(cellToHighlight)
+          if (!cellToHighlight) return; // stop if out of bounds
+          if (cellToHighlight.id) return; // stop if cell already has an id
+        }        
+      }
+      if (direction === 'vertical') {
+        for (let i = 0; i < size * 10; i = i + 10) {
+          const cellToHighlight = cellList[index + i];
+          if (!cellToHighlight) return; // stop if out of bounds
+          if (cellToHighlight.id) return; // stop if cell already has an id
+        }
+      }
+
+        itemsAlreadySet.push(currentItem); // add item to tracking array
+        game.player.gameboard.setItem( // set item to game board
           currentItem,
           direction,
           Number(cell.dataset.x) + 1,
           Number(cell.dataset.y) + 1,
         );
-        connectGrid(game.player);
-        colorItemsOnGrid();
+        connectGrid(game.player); // connect dom grid to gameboard grid
+        colorItemsOnGrid(); // display colors
         currentItem = null;
         console.log(game.player.gameboard.grid);
-      }
+        console.log(itemsAlreadySet)
+      
     });
   });
 }

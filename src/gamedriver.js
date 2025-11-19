@@ -41,7 +41,6 @@ function randomComputerSet(game) {
         Math.floor(Math.random() * 10) + 1,
       );
     }
-    console.log(game.computer.gameboard.grid);
   }
 }
 
