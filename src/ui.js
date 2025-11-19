@@ -140,6 +140,7 @@ function selectItemToSet(game, currentItem) {
   const rotateButton = document.getElementById('rotate');
   const cellList = document.querySelectorAll('#playerGrid > .cell');
   let direction = 'horizontal';
+  let itemsAlreadySet = [];
 
   // set direction with rotation button
   rotateButton.addEventListener('click', () => {
@@ -165,6 +166,9 @@ function selectItemToSet(game, currentItem) {
 
   cellList.forEach((cell, index) => {
     cell.addEventListener('mouseover', () => {
+      if (itemsAlreadySet.includes(currentItem)) {
+        return;
+      }
       const size = currentItem ? currentItem.length : 0;
       if (direction === 'horizontal') {
         for (let i = 0; i < size; i++) {
@@ -201,21 +205,24 @@ function selectItemToSet(game, currentItem) {
 
     cell.addEventListener('click', () => {
       if (!currentItem) return;
-      game.player.gameboard.setItem(
-        currentItem,
-        direction,
-        Number(cell.dataset.x) + 1,
-        Number(cell.dataset.y) + 1,
-      );
-      connectGrid(game.player);
-      colorItemsOnGrid();
-      currentItem = null;
-      console.log(game.player.gameboard.grid);
+      if (itemsAlreadySet.includes(currentItem)) {
+        return;
+      } else {
+        itemsAlreadySet.push(currentItem);
+        game.player.gameboard.setItem(
+          currentItem,
+          direction,
+          Number(cell.dataset.x) + 1,
+          Number(cell.dataset.y) + 1,
+        );
+        connectGrid(game.player);
+        colorItemsOnGrid();
+        currentItem = null;
+        console.log(game.player.gameboard.grid);
+      }
     });
   });
 }
-
-
 
 export {
   createGrids,
