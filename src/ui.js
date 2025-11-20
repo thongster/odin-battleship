@@ -108,7 +108,7 @@ function playerAttack(game, computerMoves) {
 
   cellList.forEach((node) => {
     node.addEventListener('click', () => {
-        if (node.textContent === 'X') return
+        if (node.textContent === 'X') return // dont allow clicks on same cell
       game.computer.gameboard.receiveAttack(
         game.computerItems,
         Number(node.dataset.x),
@@ -226,25 +226,19 @@ function selectItemToSet(game, gameState, itemsAlreadySet) {
       if (itemsAlreadySet.includes(gameState.currentItem)) return;
 
       const size = gameState.currentItem ? gameState.currentItem.length : 0;
+      
       if (direction === 'horizontal') {
+        if ((Number(cell.dataset.x) + size - 1) > 9) return
         for (let i = 0; i < size; i++) {
           const cellToHighlight = cellList[index + i]; // cell + the size
           if (!cellToHighlight) return; // stop if out of bounds
-          for (let i of cellToHighlight.dataset.x) {
-            if (i >= 9) return;
-          }
+          
+        //   for (let i of cellToHighlight.dataset.x) {
+        //     if (i >= 9) return;
+        //   }
           if (cellToHighlight.id) return; // stop if cell already has an id
         }
-      }
-      if (direction === 'vertical') {
-        for (let i = 0; i < size * 10; i = i + 10) {
-          const cellToHighlight = cellList[index + i];
-          if (!cellToHighlight) return; // stop if out of bounds
-          if (cellToHighlight.id) return; // stop if cell already has an id
-        }
-      }
-
-      itemsAlreadySet.push(gameState.currentItem); // add item to tracking array
+              itemsAlreadySet.push(gameState.currentItem); // add item to tracking array
       game.player.gameboard.setItem(
         // set item to game board
         gameState.currentItem,
@@ -252,10 +246,29 @@ function selectItemToSet(game, gameState, itemsAlreadySet) {
         Number(cell.dataset.x) + 1,
         Number(cell.dataset.y) + 1,
       );
+      }
+      if (direction === 'vertical') {
+        for (let i = 0; i < size * 10; i = i + 10) {
+          const cellToHighlight = cellList[index + i];
+          if (!cellToHighlight) return; // stop if out of bounds
+          if (cellToHighlight.id) return; // stop if cell already has an id
+        }
+              itemsAlreadySet.push(gameState.currentItem); // add item to tracking array
+      game.player.gameboard.setItem(
+        // set item to game board
+        gameState.currentItem,
+        direction,
+        Number(cell.dataset.x) + 1,
+        Number(cell.dataset.y) + 1,
+      );
+      }
+
+
       connectGrid(game.player); // connect dom grid to gameboard grid
       colorItemsOnGrid(); // display colors
       checkPhase(game, gameState);
       gameState.currentItem = null;
+      console.log(itemsAlreadySet)
     });
   });
 }
