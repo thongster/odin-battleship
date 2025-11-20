@@ -87,18 +87,40 @@ button:hover {
 }
 
 .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
   background: #242427;
   padding: 1rem;
   border: 1px solid #333;
   border-radius: 0.6rem;
   box-shadow: 0 0 10px rgba(0,0,0,0.4);
-  width: 120px;
-  text-align: center;
+  width: 150px;
+  gap: 0.5rem;
+  height: 300px;
+}
+
+.item img {
+    height: 150px;
+    aspect-ratio: 2 / 3;
 }
 
 .item p {
   font-size: 0.8rem;
   opacity: 0.8;
+}
+
+.cellPreview {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+}
+
+.cellPreview > .cell {
+    width: 1rem;
+    height: 1rem;
 }
 
 .state {
