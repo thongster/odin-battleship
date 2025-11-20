@@ -63,6 +63,7 @@ function newGamePhase(game) {
   randomComputerSet(game); // computer sets new board
   connectGrid(game.player); // connect grid to grid array after items are set
   connectGrid(game.computer); // connect grid to grid array after items are set
+//   enableGrids() // enable grids
 }
 
 function checkPhase(game, gameState) {
@@ -79,7 +80,7 @@ function checkPhase(game, gameState) {
     game.computer.gameboard.itemCount === 0
   ) {
     console.log('game is over');
-    // gameOver()
+    gameOver(game)
   }
 }
 
@@ -88,18 +89,26 @@ function playingGamePhase(game) {
   playerAttack(game, computerMoves);
 }
 
-function gameOver(game) {}
+function gameOver(game) {
+    disableGrids()
+}
 
-function checkGameOver(player) {
-  if (player.gameboard.itemCount === 0) {
-    console.log('game over');
-  } else {
-  }
+function disableGrids() {
+    const bothGrids = document.querySelectorAll('.cell');
+    bothGrids.forEach((cell) => {
+        cell.classList.add("disabled")
+    })
+}
+
+function enableGrids() {
+    const bothGrids = document.querySelectorAll('.cell');
+    bothGrids.forEach((cell) => {
+        cell.classList.remove("disabled")
+    })
 }
 
 export {
   generateItems,
-  checkGameOver,
   newGame,
   randomComputerSet,
   newGamePhase,

@@ -64,6 +64,8 @@ export default class Gameboard {
         if (item.name === this.grid[x][y]) {
           item.hit(); // add to item hitCount
           item.isFound(); // check if item is found with every hit
+          console.log(item.hitCount)
+          console.log(item.foundStatus)
           if (item.foundStatus) {
             this.itemCount--; // subtract from itemCount if item is found
           }

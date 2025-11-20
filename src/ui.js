@@ -1,6 +1,5 @@
 import {
   generateItems,
-  checkGameOver,
   checkPhase,
   gameState,
 } from './gamedriver.js';
@@ -109,6 +108,7 @@ function playerAttack(game, computerMoves) {
 
   cellList.forEach((node) => {
     node.addEventListener('click', () => {
+        if (node.textContent === 'X') return
       game.computer.gameboard.receiveAttack(
         game.computerItems,
         Number(node.dataset.x),
