@@ -1,6 +1,9 @@
-import { generateItems, checkGameOver, checkPhase } from './gamedriver.js';
-
-
+import {
+  generateItems,
+  checkGameOver,
+  checkPhase,
+  gameState,
+} from './gamedriver.js';
 
 // populate player and computer visual game boards
 function createGrids(player) {
@@ -90,15 +93,15 @@ function revealColorOnHit(node) {
 }
 
 function clearGridDOM() {
-  document.getElementById("playerGrid").innerHTML = "";
-  document.getElementById("computerGrid").innerHTML = "";
+  document.getElementById('playerGrid').innerHTML = '';
+  document.getElementById('computerGrid').innerHTML = '';
 }
 
 function toggleAttack() {
-    const cellList = document.querySelectorAll('#computerGrid > .cell')
-    cellList.forEach((node) => {
-        node.classList.toggle("disabled")
-    })
+  const cellList = document.querySelectorAll('#computerGrid > .cell');
+  cellList.forEach((node) => {
+    node.classList.toggle('disabled');
+  });
 }
 
 function playerAttack(game, computerMoves) {
@@ -113,7 +116,7 @@ function playerAttack(game, computerMoves) {
       );
       node.textContent = 'X';
       revealColorOnHit(node);
-      checkPhase(game)
+      checkPhase(game, gameState);
       computerAttack(game, computerMoves);
     });
   });
@@ -143,7 +146,7 @@ function computerAttack(game, computerMoves) {
     }
   });
 
-  checkPhase(game)
+  checkPhase(game, gameState);
 }
 
 function selectItemToSet(game, gameState, itemsAlreadySet) {
@@ -226,7 +229,6 @@ function selectItemToSet(game, gameState, itemsAlreadySet) {
       if (direction === 'horizontal') {
         for (let i = 0; i < size; i++) {
           const cellToHighlight = cellList[index + i]; // cell + the size
-          console.log(cellToHighlight);
           if (!cellToHighlight) return; // stop if out of bounds
           for (let i of cellToHighlight.dataset.x) {
             if (i >= 9) return;
@@ -237,7 +239,6 @@ function selectItemToSet(game, gameState, itemsAlreadySet) {
       if (direction === 'vertical') {
         for (let i = 0; i < size * 10; i = i + 10) {
           const cellToHighlight = cellList[index + i];
-          console.log(cellToHighlight);
           if (!cellToHighlight) return; // stop if out of bounds
           if (cellToHighlight.id) return; // stop if cell already has an id
         }
@@ -253,9 +254,8 @@ function selectItemToSet(game, gameState, itemsAlreadySet) {
       );
       connectGrid(game.player); // connect dom grid to gameboard grid
       colorItemsOnGrid(); // display colors
-      checkPhase(game);
+      checkPhase(game, gameState);
       gameState.currentItem = null;
-      console.log(cellList)
     });
   });
 }
@@ -268,5 +268,5 @@ export {
   computerAttack,
   selectItemToSet,
   clearGridDOM,
-  toggleAttack
+  toggleAttack,
 };

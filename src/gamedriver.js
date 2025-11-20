@@ -9,15 +9,16 @@ import {
   computerAttack,
   selectItemToSet,
   toggleAttack,
-  clearGridDOM
+  clearGridDOM,
 } from './ui.js';
 
 const gameState = {
-  phase: "placement", // "placement", "player-turn", "computer-turn", "game-over"
+  phase: 'placement', // "placement", "player-turn", "computer-turn", "game-over"
   currentItem: null,
   itemsPlaced: 0,
   totalItems: 5,
-  computerMoves: []
+  computerMoves: [],
+  attackPhaseStarted: false,
 };
 
 // generate items at start of game
@@ -56,7 +57,7 @@ function newGame() {
 }
 
 function newGamePhase(game) {
-    clearGridDOM()
+  clearGridDOM();
   createGrids('player'); // create player grid on dom
   createGrids('computer'); // create computer grid on dom
   randomComputerSet(game); // computer sets new board
@@ -64,16 +65,20 @@ function newGamePhase(game) {
   connectGrid(game.computer); // connect grid to grid array after items are set
 }
 
-function checkPhase(game) {
-  if (game.player.gameboard.itemCount === 5) {
+function checkPhase(game, gameState) {
+  if (
+    game.player.gameboard.itemCount === 5 &&
+    gameState.attackPhaseStarted === false
+  ) {
+    gameState.attackPhaseStarted = true;
     playingGamePhase(game);
-    console.log("start game")
+    console.log('start game');
   }
   if (
     game.player.gameboard.itemCount === 0 ||
     game.computer.gameboard.itemCount === 0
   ) {
-    console.log("game is over")
+    console.log('game is over');
     // gameOver()
   }
 }
@@ -87,7 +92,7 @@ function gameOver(game) {}
 
 function checkGameOver(player) {
   if (player.gameboard.itemCount === 0) {
-    console.log('game over');    
+    console.log('game over');
   } else {
   }
 }
@@ -99,5 +104,5 @@ export {
   randomComputerSet,
   newGamePhase,
   checkPhase,
-  gameState
+  gameState,
 };
