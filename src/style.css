@@ -67,77 +67,100 @@ button:hover {
 }
 
 
-.buttonsContainer {
+/* .buttonsContainer {
   display: flex;
   flex-direction: row;
   justify-content: start;
   gap: 1rem;
-}
+} */
 
 .itemsContainer {
-  display: flex;
-  flex-direction: column;
+  padding: 0.5rem;
 }
 
 .itemsHeader {
   display: flex;
-  flex-direction: row;
-  justify-content: start;
+  align-items: center;
   gap: 1rem;
+}
+
+.itemsHeader h3 {
+  font-weight: 400;
+  color: #3EE7C9;
 }
 
 .items {
   display: flex;
-  flex-direction: row;
   gap: 1rem;
   justify-content: center;
-  margin: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
 }
 
 .item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: center;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 1);
-  border-radius: 0.5rem;
+  background: #242427;
   padding: 1rem;
+  border: 1px solid #333;
+  border-radius: 0.6rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  width: 120px;
+  text-align: center;
+}
+
+.item p {
+  font-size: 0.8rem;
+  opacity: 0.8;
 }
 
 .state {
-  display: flex;
-  justify-content: center;
-  margin: 0.5rem;
+  text-align: center;
+  margin: 1rem 0;
 }
 
 #stateTitle {
-  font-weight: 300;
+  font-size: 1.2rem;
+  color: #D8A13D;
+  text-shadow: 0 0 6px rgba(216,161,61, 0.4);
 }
 
 .gridContainer {
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  gap: 4rem;
+  gap: 3rem;
+  margin: 1rem;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 2rem);
+  grid-template-rows: repeat(10, 2rem);
+  gap: 2px;
+  background: #121213;
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  box-shadow: 0 0 15px rgba(130, 130, 130, 0.1);
 }
 
 .cell {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid red;
-  height: 2rem;
-  width: 2rem;
+  border: 1px solid #333;
+  background: #222;
+  color: white;
+  font-weight: bold;
+  transition: 0.15s ease;
 }
 
 .cell:hover {
-  scale: 1.1;
+  background: #333;
+  transform: scale(1.15);
+}
+
+/* Disabled grid (no clicking) */
+.disabled {
+  pointer-events: none;
+  opacity: 0.4;
 }
 
 .disabled {
