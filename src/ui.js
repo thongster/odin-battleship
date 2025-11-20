@@ -148,7 +148,7 @@ function computerAttack(game, computerMoves) {
   checkGameOver(game.player);
 }
 
-function selectItemToSet(game, currentItem, itemsAlreadySet) {
+function selectItemToSet(game, gameState, itemsAlreadySet) {
   const botdButton = document.getElementById('botd');
   const hotoButtom = document.getElementById('hoto');
   const enigmaButton = document.getElementById('enigma');
@@ -165,27 +165,27 @@ function selectItemToSet(game, currentItem, itemsAlreadySet) {
 
   // set current item to botd
   botdButton.addEventListener('click', () => {
-    currentItem = game.playerItems[0];
+    gameState.currentItem = game.playerItems[0];
   });
   hotoButtom.addEventListener('click', () => {
-    currentItem = game.playerItems[1];
+    gameState.currentItem = game.playerItems[1];
   });
   enigmaButton.addEventListener('click', () => {
-    currentItem = game.playerItems[2];
+    gameState.currentItem = game.playerItems[2];
   });
   spiritButton.addEventListener('click', () => {
-    currentItem = game.playerItems[3];
+    gameState.currentItem = game.playerItems[3];
   });
   sojButton.addEventListener('click', () => {
-    currentItem = game.playerItems[4];
+    gameState.currentItem = game.playerItems[4];
   });
 
   cellList.forEach((cell, index) => {
     cell.addEventListener('mouseover', () => {
-      if (itemsAlreadySet.includes(currentItem)) {
+      if (itemsAlreadySet.includes(gameState.currentItem)) {
         return;
       }
-      const size = currentItem ? currentItem.length : 0;
+      const size = gameState.currentItem ? gameState.currentItem.length : 0;
       if (direction === 'horizontal') {
         for (let i = 0; i < size; i++) {
           const cellToHighlight = cellList[index + i]; // cell + the size
@@ -220,11 +220,11 @@ function selectItemToSet(game, currentItem, itemsAlreadySet) {
     });
 
     cell.addEventListener('click', () => {
-      if (!currentItem) return;
+      if (!gameState.currentItem) return;
       // if item already set, don't allow duplicates
-      if (itemsAlreadySet.includes(currentItem)) return;
+      if (itemsAlreadySet.includes(gameState.currentItem)) return;
 
-      const size = currentItem ? currentItem.length : 0;
+      const size = gameState.currentItem ? gameState.currentItem.length : 0;
       if (direction === 'horizontal') {
         for (let i = 0; i < size; i++) {
           const cellToHighlight = cellList[index + i]; // cell + the size
@@ -245,10 +245,10 @@ function selectItemToSet(game, currentItem, itemsAlreadySet) {
         }
       }
 
-      itemsAlreadySet.push(currentItem); // add item to tracking array
+      itemsAlreadySet.push(gameState.currentItem); // add item to tracking array
       game.player.gameboard.setItem(
         // set item to game board
-        currentItem,
+        gameState.currentItem,
         direction,
         Number(cell.dataset.x) + 1,
         Number(cell.dataset.y) + 1,
@@ -256,7 +256,7 @@ function selectItemToSet(game, currentItem, itemsAlreadySet) {
       connectGrid(game.player); // connect dom grid to gameboard grid
       colorItemsOnGrid(); // display colors
       checkPhase(game);
-      currentItem = null;
+      gameState.currentItem = null;
       console.log(cellList)
     });
   });

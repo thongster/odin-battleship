@@ -33,13 +33,14 @@ selectItemToSet(game, gameState, itemsAlreadySet);
 
 const resetGameBtn = document.getElementById('resetGame');
 resetGameBtn.addEventListener('click', () => {
+  document.getElementById("playerGrid").innerHTML = "";
+  document.getElementById("computerGrid").innerHTML = "";
   game = newGame();
+  newGamePhase(game)
+  selectItemToSet(game, gameState, itemsAlreadySet);
 
   gameState.phase = "placement";
   gameState.currentItem = null;
   gameState.itemsPlaced = 0;
   gameState.computerMoves = [];
-
-  clearGridDOM();
-  connectGrid(game.player);
 });

@@ -33,13 +33,6 @@ h1 {
   text-shadow: 0 0 6px rgba(216,161,61, 0.4);
 }
 
-/* .app {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.5rem;
-} */
-
 button {
   padding: 0.4rem 1rem;
   border-radius: 0.4rem;
@@ -65,14 +58,6 @@ button:hover {
 #resetGame:hover {
   background: #9163ff;
 }
-
-
-/* .buttonsContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  gap: 1rem;
-} */
 
 .itemsContainer {
   padding: 0.5rem;
@@ -163,6 +148,37 @@ button:hover {
   opacity: 0.4;
 }
 
-.disabled {
-    pointer-events: none;
+@media (max-width: 768px) {
+  header {
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .items {
+    gap: 0.5rem;
+  }
+
+  .item {
+    width: 100px;
+    padding: 0.8rem;
+  }
+
+  .gridContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(10, 1.6rem);
+    grid-template-rows: repeat(10, 1.6rem);
+  }
+
+  .cell {
+    height: 1.6rem;
+    width: 1.6rem;
+  }
 }
