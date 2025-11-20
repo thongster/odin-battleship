@@ -1,14 +1,8 @@
 import './modern-normalize.css';
 import './style.css';
 import './index.html';
-import {
-  selectItemToSet,
-} from './ui.js';
-import {
-  newGame,
-  newGamePhase,
-  gameState,
-} from './gamedriver.js';
+import { selectItemToSet } from './ui.js';
+import { newGame, newGamePhase, gameState } from './gamedriver.js';
 
 let game = newGame(); // start new game (new player, computer, itemarrays)
 newGamePhase(game, gameState); // enter New Game Phase
@@ -26,5 +20,5 @@ resetGameBtn.addEventListener('click', () => {
   gameState.currentItem = null;
   gameState.itemsPlaced = 0;
   gameState.computerMoves = [];
-  gameState.attackPhaseStarted = false
+  gameState.attackPhaseStarted = false;
 });
