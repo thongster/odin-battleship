@@ -11,7 +11,7 @@ import {
   computerAttack,
   selectItemToSet,
   clearGridDOM,
-  toggleAttack
+  toggleAttack,
 } from './ui.js';
 import {
   generateItems,
@@ -19,31 +19,27 @@ import {
   newGame,
   randomComputerSet,
   newGamePhase,
-  
+  gameState,
+  setPhase,
+  checkPlacementPhase,
+  checkWinCondition,
 } from './gamedriver.js';
 
 let game = newGame(); // start new game (new player, computer, itemarrays)
 newGamePhase(game); // enter New Game Phase
-let currentItem;
-console.log(currentItem)
+
 let itemsAlreadySet = [];
-selectItemToSet(game, currentItem, itemsAlreadySet);
-toggleAttack()
+selectItemToSet(game, gameState, itemsAlreadySet);
 
 const resetGameBtn = document.getElementById('resetGame');
 resetGameBtn.addEventListener('click', () => {
-  game = newGame(); // start new game (new player, computer, itemarrays)
-  randomComputerSet(game); // computer sets new board
-  connectGrid(game.player); // connect grid to grid array after items are set
-  connectGrid(game.computer); // connect grid to grid array after items are set
-  clearGridDOM()
-  toggleAttack()
-  currentItem = undefined;
-  itemsAlreadySet = []
-  selectItemToSet(game, currentItem, itemsAlreadySet);
-  colorItemsOnGrid()
-  console.log(game.player.gameboard.grid)
-});
+  game = newGame();
 
-// let computerMoves = [];
-// playerAttack(game, computerMoves);
+  gameState.phase = "placement";
+  gameState.currentItem = null;
+  gameState.itemsPlaced = 0;
+  gameState.computerMoves = [];
+
+  clearGridDOM();
+  connectGrid(game.player);
+});

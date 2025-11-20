@@ -12,9 +12,7 @@ function createGrids(player) {
   for (let i = 0; i < 10; i++) {
     const cell = document.createElement('div');
     cell.classList.add('cell');
-    if (player == 'computer') {
-        cell.classList.add('disabled')
-    }
+
     grid.append(cell);
     for (let i = 0; i < 9; i++) {
       const cell = document.createElement('div');

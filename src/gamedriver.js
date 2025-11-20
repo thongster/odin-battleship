@@ -11,6 +11,14 @@ import {
   toggleAttack
 } from './ui.js';
 
+const gameState = {
+  phase: "placement", // "placement", "player-turn", "computer-turn", "game-over"
+  currentItem: null,
+  itemsPlaced: 0,
+  totalItems: 5,
+  computerMoves: []
+};
+
 // generate items at start of game
 function generateItems(player) {
   const botd = new Item('Breath of the Dying', 5);
@@ -57,13 +65,11 @@ function newGamePhase(game) {
 function checkPhase(game) {
   if (game.player.gameboard.itemCount === 5) {
     playingGamePhase(game);
-    toggleAttack()
   }
   if (
     game.player.gameboard.itemCount === 0 ||
     game.computer.gameboard.itemCount === 0
   ) {
-    toggleAttack()
     // gameOver()
   }
 }
@@ -89,4 +95,5 @@ export {
   randomComputerSet,
   newGamePhase,
   checkPhase,
+  gameState
 };
