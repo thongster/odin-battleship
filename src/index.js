@@ -1,5 +1,6 @@
 import './modern-normalize.css';
 import './style.css';
+import './index.html'
 import Ship from './ship.js';
 import Gameboard from './gameboard.js';
 import Player from './player.js';
@@ -33,8 +34,6 @@ selectItemToSet(game, gameState, itemsAlreadySet);
 
 const resetGameBtn = document.getElementById('resetGame');
 resetGameBtn.addEventListener('click', () => {
-  document.getElementById("playerGrid").innerHTML = "";
-  document.getElementById("computerGrid").innerHTML = "";
   game = newGame();
   newGamePhase(game)
   selectItemToSet(game, gameState, itemsAlreadySet);

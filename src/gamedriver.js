@@ -8,7 +8,8 @@ import {
   playerAttack,
   computerAttack,
   selectItemToSet,
-  toggleAttack
+  toggleAttack,
+  clearGridDOM
 } from './ui.js';
 
 const gameState = {
@@ -55,6 +56,7 @@ function newGame() {
 }
 
 function newGamePhase(game) {
+    clearGridDOM()
   createGrids('player'); // create player grid on dom
   createGrids('computer'); // create computer grid on dom
   randomComputerSet(game); // computer sets new board
@@ -65,11 +67,13 @@ function newGamePhase(game) {
 function checkPhase(game) {
   if (game.player.gameboard.itemCount === 5) {
     playingGamePhase(game);
+    console.log("start game")
   }
   if (
     game.player.gameboard.itemCount === 0 ||
     game.computer.gameboard.itemCount === 0
   ) {
+    console.log("game is over")
     // gameOver()
   }
 }

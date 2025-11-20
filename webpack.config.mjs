@@ -3,6 +3,8 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import { fileURLToPath } from 'url';
+import FaviconsWebpackPlugin from "favicons-webpack-plugin";
+
 
 // Needed because __dirname doesn't exist in ESM
 const __filename = fileURLToPath(import.meta.url);
@@ -25,6 +27,10 @@ export default {
 
   module: {
     rules: [
+      {
+        test: /\.html$/,
+        use: ["html-loader"],
+      },
       // JS + Babel
       {
         test: /\.js$/,
@@ -52,6 +58,8 @@ export default {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
+
+    new FaviconsWebpackPlugin('./src/img/favicon.png'),
 
     new CleanWebpackPlugin(),
   ],

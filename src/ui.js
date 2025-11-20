@@ -1,5 +1,7 @@
 import { generateItems, checkGameOver, checkPhase } from './gamedriver.js';
 
+
+
 // populate player and computer visual game boards
 function createGrids(player) {
   let grid;
@@ -88,12 +90,8 @@ function revealColorOnHit(node) {
 }
 
 function clearGridDOM() {
-  const allCellList = document.querySelectorAll('.cell');
-  allCellList.forEach((node) => {
-    node.removeAttribute("id")
-    node.textContent = ""
-    node.style.backgroundColor = ""
-    })
+  document.getElementById("playerGrid").innerHTML = "";
+  document.getElementById("computerGrid").innerHTML = "";
 }
 
 function toggleAttack() {
@@ -115,7 +113,7 @@ function playerAttack(game, computerMoves) {
       );
       node.textContent = 'X';
       revealColorOnHit(node);
-      checkGameOver(game.computer);
+      checkPhase(game)
       computerAttack(game, computerMoves);
     });
   });
@@ -145,7 +143,7 @@ function computerAttack(game, computerMoves) {
     }
   });
 
-  checkGameOver(game.player);
+  checkPhase(game)
 }
 
 function selectItemToSet(game, gameState, itemsAlreadySet) {
