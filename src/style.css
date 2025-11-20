@@ -23,6 +23,7 @@ h1, h2, h3, p {
 header {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 1rem 0;
 }
@@ -64,13 +65,19 @@ button:hover {
 }
 
 .itemsContainer {
+      width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* NEW */
   padding: 0.5rem;
 }
 
 .itemsHeader {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
+  width: 100%;
 }
 
 .itemsHeader h3 {
@@ -84,6 +91,7 @@ button:hover {
   justify-content: center;
   margin-top: 1rem;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .item {
@@ -102,8 +110,8 @@ button:hover {
 }
 
 .item img {
-    height: 150px;
-    aspect-ratio: 2 / 3;
+    height: 140px;
+    object-fit: contain; 
 }
 
 .item p {
@@ -123,6 +131,26 @@ button:hover {
     height: 1rem;
 }
 
+.item:nth-of-type(1) > .cellPreview > .cell {
+    background-color: #00F6FF;
+}
+
+.item:nth-of-type(2) > .cellPreview > .cell {
+    background-color: #35E06F;
+}
+
+.item:nth-of-type(3) > .cellPreview > .cell {
+    background-color: #A45CFF;
+}
+
+.item:nth-of-type(4) > .cellPreview > .cell {
+    background-color: #8ACBFF;
+}
+
+.item:nth-of-type(5) > .cellPreview > .cell {
+    background-color: #C6932F;
+}
+
 .state {
   text-align: center;
   margin: 1rem 0;
@@ -137,6 +165,7 @@ button:hover {
 .gridContainer {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 3rem;
   margin: 1rem;
 }
@@ -188,14 +217,32 @@ button:hover {
   }
 
   .item {
-    width: 100px;
-    padding: 0.8rem;
+    width: 110px;
+    height: 240px; 
+    padding: 0.6rem;
+  }
+    .item img {
+    height: 100px;    
   }
 
   .gridContainer {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+  }
+
+
+  .cellPreview > .cell {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+
+  .itemsHeader h3 {
+    font-size: 1rem;  
+  }
+
+  #rotate {
+    padding: 0.3rem 0.7rem;
   }
 
   .grid {

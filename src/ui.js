@@ -49,19 +49,19 @@ function colorItemsOnGrid() {
   cellList.forEach((node) => {
     switch (node.id) {
       case 'Breath of the Dying':
-        node.style.backgroundColor = '#3EE7C9';
+        node.style.backgroundColor = '#00F6FF';
         break;
       case 'Heart of the Oak':
-        node.style.backgroundColor = '#3BAA44';
+        node.style.backgroundColor = '#35E06F';
         break;
       case 'Enigma':
-        node.style.backgroundColor = '#7C4FFF';
+        node.style.backgroundColor = '#A45CFF';
         break;
       case 'Spirit':
-        node.style.backgroundColor = '#4DA6FF';
+        node.style.backgroundColor = '#8ACBFF';
         break;
       case 'Stone of Jordan':
-        node.style.backgroundColor = '#D8A13D';
+        node.style.backgroundColor = '#C6932F';
         break;
     }
   });
@@ -69,21 +69,21 @@ function colorItemsOnGrid() {
 
 function revealColorOnHit(node) {
   switch (node.id) {
-    case 'Breath of the Dying':
-      node.style.backgroundColor = '#3EE7C9';
-      break;
-    case 'Heart of the Oak':
-      node.style.backgroundColor = '#3BAA44';
-      break;
-    case 'Enigma':
-      node.style.backgroundColor = '#7C4FFF';
-      break;
-    case 'Spirit':
-      node.style.backgroundColor = '#4DA6FF';
-      break;
-    case 'Stone of Jordan':
-      node.style.backgroundColor = '#D8A13D';
-      break;
+      case 'Breath of the Dying':
+        node.style.backgroundColor = '#00F6FF';
+        break;
+      case 'Heart of the Oak':
+        node.style.backgroundColor = '#35E06F';
+        break;
+      case 'Enigma':
+        node.style.backgroundColor = '#A45CFF';
+        break;
+      case 'Spirit':
+        node.style.backgroundColor = '#8ACBFF';
+        break;
+      case 'Stone of Jordan':
+        node.style.backgroundColor = '#C6932F';
+        break;
   }
 }
 
