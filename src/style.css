@@ -33,12 +33,39 @@ h1 {
   text-shadow: 0 0 6px rgba(216,161,61, 0.4);
 }
 
-.app {
+/* .app {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 0.5rem;
+} */
+
+button {
+  padding: 0.4rem 1rem;
+  border-radius: 0.4rem;
+  border: none;
+  cursor: pointer;
+  background: #2e2e30;
+  color: white;
+  border: 1px solid #555;
+  transition: 0.2s ease;
 }
+
+button:hover {
+  background: #444;
+  transform: scale(1.05);
+  border: 1px solid #777;
+}
+
+#resetGame {
+  background: #7C4FFF;
+  border: 1px solid #a88aff;
+}
+
+#resetGame:hover {
+  background: #9163ff;
+}
+
 
 .buttonsContainer {
   display: flex;
